@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/matrix_table-task/static/css/main.8d6ee2f2.css",
+    "main.js": "/matrix_table-task/static/js/main.33d03cd3.js",
+    "index.html": "/matrix_table-task/index.html",
+    "main.8d6ee2f2.css.map": "/matrix_table-task/static/css/main.8d6ee2f2.css.map",
+    "main.33d03cd3.js.map": "/matrix_table-task/static/js/main.33d03cd3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d6ee2f2.css",
+    "static/js/main.33d03cd3.js"
+  ]
+}
