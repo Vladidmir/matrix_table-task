@@ -1,0 +1,6 @@
+@import "src/styles/global";
+.headerCell {
+	@include cell-style($bg-header-cell, $header-cell-text-color);
+	font-weight: 600;
+	min-width: 150px;
+}

@@ -1,0 +1,51 @@
+@import "src/styles/global";
+.cell {
+	@include cell-style($bg-cell-color, $cell-text-color);
+
+	&Item {
+		&Hover {
+			color: white;
+			border: 1px solid white;
+			background: transparent;
+		}
+
+		&Percent {
+			background-image: linear-gradient(0deg, #e0efea, #3046ea99);
+		}
+
+		&::after {
+			content: attr(data-title);
+			position: absolute;
+			left: 0;
+			top: 60%;
+			width: 140px;
+			padding: 5px;
+			border-radius: 4px;
+			background: #423e53d7;
+			font-size: 12px;
+			color: $white-text;
+			transition: 300ms;
+			pointer-events: none;
+			transform: translateY(15px);
+			opacity: 0;
+			z-index: 2;
+		}
+
+		&:hover::after {
+			opacity: 1;
+			transform: translateY(5px);
+		}
+	}
+
+	&Header {
+		min-width: 150px;
+		min-height: 46px;
+		border-radius: 2px;
+		font-weight: 600;
+		font-size: 18px;
+		line-height: 26px;
+		text-align: center;
+		border-radius: 5px;
+		color: $header-cell-text-color;
+	}
+}

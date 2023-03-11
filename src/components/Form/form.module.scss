@@ -1,0 +1,72 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	min-width: 339px;
+	height: 352px;
+	min-height: 328px;
+	border-radius: 15px;
+	padding: 40px 55px;
+
+	@media screen and (max-width: 768px) {
+		min-width: 280px;
+		height: auto;
+		min-height: 300px;
+		padding: 25px 20px;
+	}
+
+	label {
+		padding: 10px 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 80%;
+		background: #ffffff4f;
+		border-radius: 15px;
+
+		@media screen and (max-width: 768px) {
+			width: 100%;
+		}
+
+		div {
+			display: flex;
+			justify-content: center;
+
+			span {
+				margin: 0 5px;
+				color: white;
+				font-weight: 600;
+			}
+		}
+
+		input {
+			width: 90%;
+			padding: 5px 0;
+			font-size: 16px;
+			background: wheat;
+			border-radius: 40px;
+			border: none;
+
+			@media screen and (max-width: 768px) {
+				width: 100%;
+			}
+		}
+	}
+
+	button {
+		width: 80%;
+		border-radius: 15px;
+
+		@media screen and (max-width: 768px) {
+			width: 100%;
+		}
+
+		&:disabled {
+			filter: grayscale(0.4);
+			background: var(--froly);
+		}
+	}
+}

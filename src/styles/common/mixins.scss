@@ -1,0 +1,10 @@
+@mixin cell-style($bg-cell-color, $cell-text-color) {
+	background: $bg-cell-color;
+	height: 40px;
+	border-radius: 5px;
+	font-size: 18px;
+	text-align: center;
+	color: $cell-text-color;
+	position: relative;
+	line-height: 26px;
+}

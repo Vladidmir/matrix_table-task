@@ -1,0 +1,5 @@
+@import "src/styles/global";
+.sumSell {
+	@include cell-style(#d2d2de, $header-cell-text-color);
+	font-weight: 600;
+}
