@@ -1,29 +1,29 @@
 import { createContext } from "react";
 import { IMatrixContext } from "types/matrixModel";
 export const initialValue: IMatrixContext = {
-  counter: 0,
   matrixHeader: [],
   matrix: [[]],
   summary: [],
   average: [],
   percent: [],
-  closetValue: [],
-  rowForShowPercent: -1,
-  cellForShowClosetValue: {
+  closestValues: [],
+  percentageRow: -1,
+  closestValueCell: {
     id: -1,
     amount: 0,
   },
-  inputs: {
+  inputsDate: {
     m: 0,
     n: 0,
     x: 1,
   },
-  changeInputs: () => {},
-  changeMatrix: () => {},
+  gridCounter: 0,
+  onChangeMatrixValue: () => {},
+  onUpdateMatrixData: () => {},
   changeCell: () => {},
   deleteRow: () => {},
-  changeRowForShowPercent: () => {},
-  changeCellForShowClosetValue: () => {},
+  onChangePercentageRow: () => {},
+  onChangeClosestValues: () => {},
   addRow: () => {},
 };
 

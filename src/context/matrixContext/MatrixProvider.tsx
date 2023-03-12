@@ -18,10 +18,10 @@ type Props = {
 
 const MatrixProvider: FC<Props> = ({ children }) => {
   const [state, dispatch] = useReducer(matrixReducer, initialValue);
-  const { matrix, inputs, counter, cellForShowClosetValue, rowForShowPercent } =
+  const { matrix, inputsDate, gridCounter, closestValueCell, percentageRow } =
     state;
 
-  const changeInputs = (name: string, value: number) => {
+  const onChangeMatrixValue = (name: string, value: number) => {
     dispatch({ type: "CHANGE_INPUTS", payload: { name, value } });
   };
 
@@ -29,7 +29,7 @@ const MatrixProvider: FC<Props> = ({ children }) => {
     dispatch({ type: "RESET_MATRIX" });
   };
 
-  const changeMatrix = () => {
+  const onUpdateMatrixData = () => {
     resetMatrix();
     dispatch({ type: "CHANGE_MATRIX" });
   };
@@ -46,11 +46,11 @@ const MatrixProvider: FC<Props> = ({ children }) => {
     dispatch({ type: "ADD_ROW" });
   };
 
-  const changeRowForShowPercent = (row: number) => {
+  const onChangePercentageRow = (row: number) => {
     dispatch({ type: "CHANGE_ROW_FOR_SHOW_PERCENT", payload: { row } });
   };
 
-  const changeCellForShowClosetValue = (cell: Cell) => {
+  const onChangeClosestValues = (cell: Cell) => {
     dispatch({ type: "CHANGE_CELL_FOR_SHOW_CLOSE_VALUE", payload: { cell } });
   };
 
@@ -66,35 +66,35 @@ const MatrixProvider: FC<Props> = ({ children }) => {
   const summary = useMemo(() => sumValues(matrix), [matrix]);
 
   const percent = useMemo(
-    () => changePercent(rowForShowPercent, matrix, summary),
-    [rowForShowPercent]
+    () => changePercent(percentageRow, matrix, summary),
+    [percentageRow]
   );
 
-  const closetValue = useMemo(
-    () => changeClosetValue(cellForShowClosetValue, matrix, inputs.x),
-    [cellForShowClosetValue, inputs.x, matrix]
+  const closestValues = useMemo(
+    () => changeClosetValue(closestValueCell, matrix, inputsDate.x),
+    [closestValueCell, inputsDate.x, matrix]
   );
 
   return (
     <MatrixContext.Provider
       value={{
-        counter,
+        gridCounter,
         matrixHeader,
         matrix,
-        inputs,
+        inputsDate,
         summary,
         average,
         percent,
-        closetValue,
-        cellForShowClosetValue,
-        rowForShowPercent,
-        changeInputs,
-        changeMatrix,
+        closestValues,
+        closestValueCell,
+        percentageRow,
+        onChangeMatrixValue,
+        onUpdateMatrixData,
         changeCell,
         deleteRow,
         addRow,
-        changeCellForShowClosetValue,
-        changeRowForShowPercent,
+        onChangeClosestValues,
+        onChangePercentageRow,
       }}
     >
       {children}

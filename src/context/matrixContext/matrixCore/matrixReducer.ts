@@ -6,8 +6,8 @@ export const matrixReducer = (state: IMatrixContext, action: Action) => {
     case "CHANGE_INPUTS":
       return {
         ...state,
-        inputs: {
-          ...state.inputs,
+        inputsDate: {
+          ...state.inputsDate,
           [action.payload.name]: action.payload.value,
         },
       };
@@ -16,9 +16,9 @@ export const matrixReducer = (state: IMatrixContext, action: Action) => {
         ...state,
         matrix: state.matrix.map((column) => {
           return column.map(() => {
-            state.counter++;
+            state.gridCounter++;
             return {
-              id: state.counter,
+              id: state.gridCounter,
               amount: Math.round(Math.random() * (999 - 100 + 1) + 100),
             };
           });
@@ -27,10 +27,10 @@ export const matrixReducer = (state: IMatrixContext, action: Action) => {
     case "RESET_MATRIX":
       return {
         ...state,
-        matrix: Array(state.inputs.m)
+        matrix: Array(state.inputsDate.m)
           .fill("")
           .map(() =>
-            Array(state.inputs.n).fill({
+            Array(state.inputsDate.n).fill({
               id: 0,
               amount: 0,
             })
@@ -54,17 +54,17 @@ export const matrixReducer = (state: IMatrixContext, action: Action) => {
       return {
         ...state,
         matrix: state.matrix.filter((_, index) => action.payload !== index),
-        inputs: {
-          ...state.inputs,
-          m: state.inputs.m - 1,
+        inputsDate: {
+          ...state.inputsDate,
+          m: state.inputsDate.m - 1,
         },
       };
     case "ADD_ROW":
-      let counter = state.matrix[state.matrix.length - 1][0].id;
-      const newRow = Array.from({ length: state.inputs.n }, () => {
-        counter++;
+      let gridCounter = state.matrix[state.matrix.length - 1][0].id;
+      const newRow = Array.from({ length: state.inputsDate.n }, () => {
+        gridCounter++;
         return {
-          id: counter,
+          id: gridCounter,
           amount: Math.round(Math.random() * (999 - 100 + 1) + 100),
         };
       });
@@ -72,20 +72,20 @@ export const matrixReducer = (state: IMatrixContext, action: Action) => {
       return {
         ...state,
         matrix: updatedMatrix3,
-        inputs: {
-          ...state.inputs,
-          m: state.inputs.m + 1,
+        inputsDate: {
+          ...state.inputsDate,
+          m: state.inputsDate.m + 1,
         },
       };
     case "CHANGE_ROW_FOR_SHOW_PERCENT":
       return {
         ...state,
-        rowForShowPercent: action.payload.row,
+        percentageRow: action.payload.row,
       };
     case "CHANGE_CELL_FOR_SHOW_CLOSE_VALUE":
       return {
         ...state,
-        cellForShowClosetValue: action.payload.cell,
+        closestValueCell: action.payload.cell,
       };
     default:
       return state;

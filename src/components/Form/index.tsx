@@ -8,14 +8,15 @@ import s from "./form.module.scss";
 import { Button } from "../UI/Button";
 
 export const Form: FC = () => {
-  const { inputs, changeInputs, changeMatrix } = useContext(MatrixContext);
+  const { inputsDate, onChangeMatrixValue, onUpdateMatrixData } =
+    useContext(MatrixContext);
   const { enter, button } = dynamicVarieables;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
     const value = +event.target.value;
     if (name === "x") {
-      const multiplication = inputs.n * inputs.m;
+      const multiplication = inputsDate.n * inputsDate.m;
       if (value < 1) {
         alert("Min value for X: 1");
         return;
@@ -25,34 +26,37 @@ export const Form: FC = () => {
         return;
       }
     }
-    changeInputs(name, value);
+    onChangeMatrixValue(name, value);
   };
 
   const handleSubmit = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      if (inputs.m < 1 || inputs.m > 100) {
+      if (inputsDate.m < 1 || inputsDate.m > 100) {
         alert("M must be between 1 and 100");
         return;
       }
-      if (inputs.n < 1 || inputs.n > 100) {
+      if (inputsDate.n < 1 || inputsDate.n > 100) {
         alert("N must be between 1 and 100");
         return;
       }
-      changeMatrix();
+      onUpdateMatrixData();
     },
-    [inputs, changeMatrix]
+    [inputsDate, onUpdateMatrixData]
   );
 
   const isSubmitDisabled =
-    inputs.m < 1 || inputs.m > 100 || inputs.n < 1 || inputs.n > 100;
+    inputsDate.m < 1 ||
+    inputsDate.m > 100 ||
+    inputsDate.n < 1 ||
+    inputsDate.n > 100;
 
   return (
     <form onSubmit={handleSubmit} className={s.form}>
       <label>
         <div>
           <span>{enter.m} : </span>
-          <span>{inputs.m}</span>
+          <span>{inputsDate.m}</span>
         </div>
 
         <input
@@ -60,7 +64,7 @@ export const Form: FC = () => {
           name="m"
           min={1}
           max={100}
-          value={inputs.m}
+          value={inputsDate.m}
           aria-label="Set value of M"
           onChange={handleChange}
         />
@@ -69,7 +73,7 @@ export const Form: FC = () => {
       <label>
         <div>
           <span>{enter.n} : </span>
-          <span>{inputs.n}</span>
+          <span>{inputsDate.n}</span>
         </div>
 
         <input
@@ -77,7 +81,7 @@ export const Form: FC = () => {
           name="n"
           min={1}
           max={100}
-          value={inputs.n}
+          value={inputsDate.n}
           aria-label="Set value of N"
           onChange={handleChange}
         />
@@ -86,14 +90,14 @@ export const Form: FC = () => {
       <label>
         <div>
           <span>{enter.x} : </span>
-          <span>{inputs.x}</span>
+          <span>{inputsDate.x}</span>
         </div>
 
         <input
           type="range"
           name="x"
           min={1}
-          value={inputs.x}
+          value={inputsDate.x}
           aria-label="Set value of X"
           onChange={handleChange}
         />

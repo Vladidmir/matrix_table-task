@@ -19,9 +19,9 @@ export const Table = () => {
     changeCell,
     deleteRow,
     addRow,
-    rowForShowPercent,
-    changeCellForShowClosetValue,
-    changeRowForShowPercent,
+    percentageRow,
+    onChangeClosestValues,
+    onChangePercentageRow,
   } = useContext(MatrixContext);
 
   const [isHoveringCell, setIsHoveringCell] = useState(false);
@@ -29,7 +29,7 @@ export const Table = () => {
   const { cell, button } = dynamicVarieables;
 
   const handleCellHover = (cell: Cell) => {
-    changeCellForShowClosetValue(cell);
+    onChangeClosestValues(cell);
     setIsHoveringCell(true);
   };
 
@@ -38,11 +38,11 @@ export const Table = () => {
   };
 
   const handleRowHover = (rowIndex: number) => {
-    changeRowForShowPercent(rowIndex);
+    onChangePercentageRow(rowIndex);
   };
 
   const handleRowMouseLeave = () => {
-    changeRowForShowPercent(-1);
+    onChangePercentageRow(-1);
   };
 
   const renderHeaderCell = (rowIndex: number) => {
@@ -61,7 +61,7 @@ export const Table = () => {
         hover={isHoveringCell}
         onMouseEnter={() => handleCellHover(cell)}
         onMouseLeave={handleCellMouseLeave}
-        percent={rowForShowPercent === rowIndex ? percent[columnIndex] : -1}
+        percent={percentageRow === rowIndex ? percent[columnIndex] : -1}
         onPress={() => changeCell(rowIndex, columnIndex)}
       />
     );

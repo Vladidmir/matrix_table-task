@@ -1,36 +1,33 @@
 type CellId = number;
 type CellValue = number;
 
-type ArrayNumber = number[];
-type ArrayString = string[];
-
-export type Cell = {
+export interface Cell {
   id: CellId;
   amount: CellValue;
-};
+}
 
-type Input = {
+interface MatrixDate {
   m: number;
   n: number;
   x: number;
-};
+}
 
 export interface IMatrixContext {
-  matrixHeader: ArrayString;
-  summary: ArrayNumber;
-  average: ArrayNumber;
-  percent: ArrayNumber;
-  counter: number;
-  rowForShowPercent: number;
-  cellForShowClosetValue: Cell;
-  closetValue: Cell[];
-  matrix: Array<Array<Cell>>;
-  inputs: Input;
-  changeInputs: (name: string, value: number) => void;
-  changeMatrix: () => void;
+  inputsDate: MatrixDate;
+  matrix: Cell[][];
+  summary: number[];
+  average: number[];
+  percent: number[];
+  percentageRow: number;
+  closestValues: Cell[];
+  closestValueCell: Cell;
+  matrixHeader: string[];
+  gridCounter: number;
+  onChangeMatrixValue: (name: string, value: number) => void;
+  onUpdateMatrixData: () => void;
   changeCell: (row: number, column: number) => void;
   deleteRow: (row: number) => void;
-  changeCellForShowClosetValue: (cell: Cell) => void;
-  changeRowForShowPercent: (row: number) => void;
+  onChangeClosestValues: (cell: Cell) => void;
+  onChangePercentageRow: (row: number) => void;
   addRow: () => void;
 }
